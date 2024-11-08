@@ -42,7 +42,7 @@ export default function Auth(): ReactNode {
       })
       .then((value) => {
         if (value) {
-          toast(t('notificaitons.login.success'), { type: 'success' });
+          toast(t('notifications.login.success'), { type: 'success' });
           value && router.push('/movies');
         }
       });

@@ -19,9 +19,11 @@ export default function Auth(): ReactNode {
       .catch(() => {
         toast(t('notifications.create.error'), { type: 'error' });
       })
-      .then(() => {
-        toast(t('notifications.create.success'), { type: 'success' });
-        returnToList();
+      .then((value) => {
+        if(value) {
+          toast(t('notifications.create.success'), {type: 'success'});
+          returnToList();
+        }
       });
   };
 

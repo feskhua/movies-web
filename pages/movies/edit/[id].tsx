@@ -39,6 +39,9 @@ const EditPage = (): ReactElement => {
   const handleDelete = async () => {
     item
       .remove()
+      .catch(() => {
+        toast(t('notifications.delete.error'), { type: 'error' });
+      })
       .then(() => {
         toast(t('notifications.delete.success'), { type: 'success' });
 
