@@ -1,14 +1,13 @@
-import {Button, DragEndDrop, Input} from "@/src/components";
-import {useFiles} from "@/src/hooks";
-import {MovieFormProps, MovieFormValues} from "@/src/types";
-import {zodResolver} from '@hookform/resolvers/zod';
+import { Button, DragEndDrop, Input } from '@/src/components';
+import { useFiles } from '@/src/hooks';
+import { MovieFormProps, MovieFormValues } from '@/src/types';
+import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
-import {isNumber} from "lodash";
-import {ReactElement, useEffect, useMemo, useState} from 'react';
-import {Controller, useForm} from 'react-hook-form';
-import {useTranslation} from "react-i18next";
-import {z} from 'zod';
-
+import { isNumber } from 'lodash';
+import { ReactElement, useEffect, useMemo, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 
 export const MovieForm = (props: MovieFormProps): ReactElement => {
   const {
@@ -20,12 +19,12 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
     onCancel,
     onDelete,
   } = props;
-  
+
   const [base64image, setBase64image] = useState<string | null>();
   const [file, setFile] = useState<File | null>(null);
-  const {get} = useFiles();
-  const {t} = useTranslation();
-  
+  const { get } = useFiles();
+  const { t } = useTranslation();
+
   const movieSchema = z.object({
     title: z
       .string()
@@ -38,19 +37,19 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
       .string()
       .optional(),
   });
-  
+
   const handleDrop = (file: File) => {
     const reader = new FileReader();
-    
+
     reader.onload = (e) => {
       setBase64image(e.target?.result as string);
     };
-    
+
     reader.readAsDataURL(file);
     setFile(file);
   };
-  
-  const {control, handleSubmit, formState: {errors}, reset} = useForm<MovieFormValues>({
+
+  const { control, handleSubmit, formState: { errors }, reset } = useForm<MovieFormValues>({
     resolver: zodResolver(movieSchema),
     defaultValues: {
       title: data?.title ?? '',
@@ -58,26 +57,26 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
       base64preview: ''
     }
   });
-  
+
   useEffect(() => {
     reset(data);
   }, [reset, data]);
-  
+
   const submit = async (data: any) => {
     onSubmit({
       ...data,
       file,
     });
   };
-  
+
   const preview = useMemo(() => {
-    if(data?.poster) {
+    if (data?.poster) {
       return get(data.poster);
     }
-    
-    return base64image ? base64image :  '';
+
+    return base64image ? base64image : '';
   }, [base64image, data]);
-  
+
   return (
     <div className="grid grid-cols-12 md:gap-6 gap-2">
       <div className="hidden md:block md:col-span-5 col-span-12">
@@ -90,7 +89,7 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
               control={control}
               name="title"
               defaultValue={control._defaultValues.title ?? ''}
-              render={({field}) => (
+              render={({ field }) => (
                 <Input
                   {...field}
                   placeholder={t('movies.form.placeholder.title')}
@@ -103,7 +102,7 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
               name="year"
               control={control}
               defaultValue={control._defaultValues.year}
-              render={({field}) => (
+              render={({ field }) => (
                 <Input
                   {...field}
                   placeholder={t('movies.form.placeholder.year') ?? 1900}
@@ -111,19 +110,19 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
                   error={errors.year?.message}
                   className="md:w-3/5 sm:w-full"
                   onChange={(e) => {
-                    const {value} = e.target;
-                    
+                    const { value } = e.target;
+
                     if (value.length > 4) {
                       return;
                     }
-                    
+
                     field.onChange(isNumber(Number(e.target.value)) ? Number(e.target.value) : 1900);
                   }}
                 />
               )}
             />
           </div>
-          <div className='md:hidden block'>
+          <div className="md:hidden block">
             <DragEndDrop onDrop={handleDrop} value={preview}/>
           </div>
           <div className={clsx(
@@ -142,14 +141,14 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
             {mode === 'edit' && (
               <Button
                 text={t('movies.form.button.delete')}
-                isLoading={isLoading}
+                disabled={isLoading}
                 variant="danger"
                 onClick={() => onDelete && onDelete()}
               />
             )}
             <Button
-              isLoading={isLoading}
               text={t('movies.form.button.submit')}
+              disabled={isLoading}
               variant="primary"
               type="submit"
             />
@@ -159,4 +158,4 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
       </form>
     </div>
   );
-}
+};

@@ -2,6 +2,6 @@ export interface UseMoviesItemParams {
   autoload?: boolean;
 }
 
-export interface  UseMoviesListParams {
+export interface UseMoviesListParams {
   autoload?: boolean;
 }

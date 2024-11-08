@@ -1,7 +1,6 @@
-import {RequestStatus} from "@/src/constants/core.auth";
-import {RootState} from "@/src/store";
-import {AuthLoginFetchDataValue, AuthRegisterFetchDataValue, Movie} from "@/src/types/fetch";
-import {AxiosError} from "axios";
+import { RequestStatus } from '@/src/constants/core.auth';
+import { RootState } from '@/src/store';
+import { AuthLoginFetchDataValue, AuthRegisterFetchDataValue, Movie } from '@/src/types/fetch';
 
 export interface ResponseBodyFailed {
   ok: false;
@@ -58,7 +57,7 @@ export interface WarningResponseFormat {
   data: ErrorType | undefined;
 }
 
-export interface  AuthState {
+export interface AuthState {
   status: RequestStatus;
   response: ResponseMessageFormats | null;
   id?: string | null;
@@ -82,7 +81,7 @@ export interface MoviesState {
     total: number;
     limit: number;
   };
-  
+
   item: {
     data: Movie | null | undefined;
     id: number | null;

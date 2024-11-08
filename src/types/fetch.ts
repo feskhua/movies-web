@@ -1,5 +1,3 @@
-import {AxiosError} from "axios";
-
 export interface AuthResponse {
   id: string;
   token: string;

@@ -1,6 +1,6 @@
-import {HttpResponseErrorType, ErrorType, ResponseBodyFailed, ManageMoviePayload} from "@/src/types";
-import axios, {AxiosError} from "axios";
-import {assign, isUndefined, omitBy} from "lodash";
+import { HttpResponseErrorType, ErrorType, ResponseBodyFailed } from '@/src/types';
+import axios from 'axios';
+import { assign } from 'lodash';
 
 export const apiClient = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
@@ -10,8 +10,7 @@ export const apiClient = axios.create({
 export const nextApiClient = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_URL}/api`,
   signal: new AbortController().signal,
-})
-
+});
 
 export const handleHttpError = (error: HttpResponseErrorType): ResponseBodyFailed => ({
   ok: false,
@@ -22,5 +21,4 @@ export const handleHttpError = (error: HttpResponseErrorType): ResponseBodyFaile
     fields: error.response?.data?.fields,
   }) as ErrorType,
 });
-
 

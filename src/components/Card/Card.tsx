@@ -1,12 +1,12 @@
-import {useFiles} from "@/src/hooks";
-import {CardProps} from "@/src/types";
-import {ReactElement} from "react";
+import { useFiles } from '@/src/hooks';
+import { CardProps } from '@/src/types';
+import { ReactElement } from 'react';
 
 export const Card = (props: CardProps): ReactElement => {
   const { title, year, path } = props;
-  
+
   const { get } = useFiles();
-  
+
   return (
     <div className="group relative p-2 flex flex-col gap-4 transition-transform rounded-lg bg-card transform hover:bg-opacity-55 hover:bg-hover-color duration-300 ease-in-out">
           <img className="w-full rounded-xl h-full group-hover:opacity-90 object-cover rounded-t-lg" src={get(path)} alt="Movie Image"/>
@@ -16,4 +16,4 @@ export const Card = (props: CardProps): ReactElement => {
             </div>
     </div>
     );
-}
+};

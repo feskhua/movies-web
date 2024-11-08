@@ -1,4 +1,4 @@
-import {MoviesState, Status} from "@/src/types";
+import { MoviesState, Status } from '@/src/types';
 
 export const moviesInitialState: MoviesState = {
   list: {
@@ -9,7 +9,7 @@ export const moviesInitialState: MoviesState = {
     total: 0,
     limit: 8,
   },
-  
+
   item: {
     id: null,
     status: Status.unset,

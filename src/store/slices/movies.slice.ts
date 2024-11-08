@@ -1,13 +1,13 @@
-import {moviesInitialState} from "@/src/store/init";
-import {authSlice} from "@/src/store/slices/auth.slice";
+import { moviesInitialState } from '@/src/store/init';
+import { authSlice } from '@/src/store/slices/auth.slice';
 import {
   moviesCreateThunk, moviesDeleteThunk,
   moviesFetchItemThunk,
   moviesFetchMovieList,
   moviesUpdateThunk
-} from "@/src/store/thunks/movies.thunks";
-import {MoviesState, Status} from "@/src/types";
-import {find} from "lodash";
+} from '@/src/store/thunks/movies.thunks';
+import { MoviesState, Status } from '@/src/types';
+import { find } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 
 export const moviesSlice = createSlice({
@@ -29,7 +29,6 @@ export const moviesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    
     builder.addCase(moviesFetchMovieList.pending, (state: MoviesState) => {
       state.list.status = Status.pending;
       state.list.error = undefined;
@@ -42,10 +41,9 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(moviesFetchMovieList.rejected, (state: MoviesState, action) => {
       state.list.status = Status.error;
-      state.list.error = action.payload?.message;
+      state.list.error = action.payload?.[0]?.message;
     });
-    
-    
+
     builder.addCase(moviesFetchItemThunk.pending, (state: MoviesState) => {
       state.item.status = Status.pending;
       state.item.error = undefined;
@@ -57,9 +55,9 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(moviesFetchItemThunk.rejected, (state: MoviesState, action) => {
       state.item.status = Status.error;
-      state.item.error = action.payload?.message;
+      state.item.error = action.payload?.[0]?.message;
     });
-    
+
     builder.addCase(moviesCreateThunk.pending, (state: MoviesState) => {
       state.item.status = Status.pending;
       state.item.error = undefined;
@@ -69,9 +67,9 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(moviesCreateThunk.rejected, (state: MoviesState, action) => {
       state.item.status = Status.error;
-      state.item.error = action.payload?.message;
+      state.item.error = action.payload?.[0]?.message;
     });
-    
+
     builder.addCase(moviesUpdateThunk.pending, (state: MoviesState) => {
       state.item.status = Status.pending;
       state.item.error = undefined;
@@ -81,9 +79,9 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(moviesUpdateThunk.rejected, (state: MoviesState, action) => {
       state.item.status = Status.error;
-      state.item.error = action.payload?.message;
+      state.item.error = action.payload?.[0]?.message;
     });
-    
+
     builder.addCase(moviesDeleteThunk.pending, (state: MoviesState) => {
       state.item.status = Status.pending;
       state.item.error = undefined;
@@ -93,13 +91,9 @@ export const moviesSlice = createSlice({
     });
     builder.addCase(moviesDeleteThunk.rejected, (state:MoviesState, action) => {
       state.item.status = Status.error;
-      state.item.error = action.payload?.message;
+      state.item.error = action.payload?.[0]?.message;
     });
-    
-    /* -----------------------------------------------------------------------------------------------------*/
-    /* @ LOGOUT                                                                                              */
-    /* -----------------------------------------------------------------------------------------------------*/
-    
+
     builder.addCase(authSlice.actions.clear, () => {
       return moviesInitialState;
     });

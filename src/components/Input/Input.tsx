@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import {forwardRef, InputHTMLAttributes, type ReactElement, useState} from "react";
+import { forwardRef, InputHTMLAttributes, type ReactElement } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
@@ -8,7 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref): ReactElement => {
   const { error, className, ...rest } = props;
-  
+
   return (
     <div className="space-y-1 w-full">
       <input

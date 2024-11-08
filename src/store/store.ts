@@ -1,16 +1,13 @@
-import {authReducer, moviesReducer} from "@/src/store/reducers";
-import {AuthState} from "@/src/types/store";
-import {configureStore, createStore, Store} from "@reduxjs/toolkit";
-import {createWrapper, Context, HYDRATE} from 'next-redux-wrapper';
-import {useDispatch, useSelector} from "react-redux";
+import { authReducer, moviesReducer } from '@/src/store/reducers';
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     movies: moviesReducer
   },
-})
-
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 

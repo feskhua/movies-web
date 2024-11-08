@@ -1,8 +1,8 @@
-import {DragEndDropProps} from "@/src/types";
-import clsx from "clsx";
+import { DragEndDropProps } from '@/src/types';
+import clsx from 'clsx';
 import Image from 'next/image';
-import {type ChangeEvent, type ReactElement, useEffect, useRef, useState, type DragEvent, useCallback} from "react";
-import {useTranslation} from "react-i18next";
+import { type ChangeEvent, type ReactElement, useEffect, useRef, useState, type DragEvent, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const DragEndDrop = (props: DragEndDropProps): ReactElement => {
   const {
@@ -10,22 +10,22 @@ export const DragEndDrop = (props: DragEndDropProps): ReactElement => {
     className,
     onDrop,
   } = props;
-  
-  const {t} = useTranslation();
-  
+
+  const { t } = useTranslation();
+
   const [preview, setPreview] = useState<string | null>(value);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  
+
   const createPreview = (file: File) => {
     const reader = new FileReader();
-    
+
     reader.onload = (e) => {
       setPreview(e.target?.result as string);
     };
-    
+
     reader.readAsDataURL(file);
   };
-  
+
   const handleDrop = useCallback((e: DragEvent<HTMLDivElement>) => {
     try {
       e.preventDefault();
@@ -36,31 +36,31 @@ export const DragEndDrop = (props: DragEndDropProps): ReactElement => {
       console.error(e);
     }
   }, [onDrop]);
-  
+
   const handleDragOver = useCallback((e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   }, []);
-  
+
   const handleClick = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     try {
       const { files } = e.target;
       const file = files?.[0];
-      
+
       if (!file) {
         return;
       }
-      
+
       createPreview(file);
       onDrop(file);
     } catch (e) {
       console.error(e);
     }
   }, [onDrop]);
-  
+
   useEffect(() => {
     setPreview(value);
   }, [value]);
-  
+
   return (
     <div
       onDrop={handleDrop}
@@ -108,9 +108,9 @@ export const DragEndDrop = (props: DragEndDropProps): ReactElement => {
               </clipPath>
             </defs>
           </svg>
-          <span className='text-white'>{t('components.dragAndDrop.title')}</span>
+          <span className="text-white">{t('components.dragAndDrop.title')}</span>
         </>
       )}
     </div>
   );
-}
+};
