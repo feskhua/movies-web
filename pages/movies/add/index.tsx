@@ -20,8 +20,8 @@ export default function Auth(): ReactNode {
         toast(t('notifications.create.error'), { type: 'error' });
       })
       .then((value) => {
-        if(value) {
-          toast(t('notifications.create.success'), {type: 'success'});
+        if (value) {
+          toast(t('notifications.create.success'), { type: 'success' });
           returnToList();
         }
       });
