@@ -54,3 +54,7 @@ export interface CardProps {
   year: number;
   path: string;
 }
+
+export interface PageWrapperProps {
+  title: string;
+}

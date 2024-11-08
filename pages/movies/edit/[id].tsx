@@ -1,4 +1,5 @@
 import { MovieForm } from '@/src/components/MovieForm/MovieForm';
+import {PageWrapper} from "@/src/components/PageWrapper";
 import { useMoviesItem, useMoviesList } from '@/src/hooks';
 import { ManageMoviePayload, Status } from '@/src/types';
 import { useParams, useRouter } from 'next/navigation';
@@ -43,8 +44,7 @@ const EditPage = (): ReactElement => {
   };
 
   return (
-    <div className="flex flex-col md:px-30 px-6 self-start bg-background gap-30 w-full max-w-screen-xl">
-      <h2 className="font-semibold md:text-heading-two  text-heading-three text-white">{t('movies.edit.title')}</h2>
+    <PageWrapper title={t('movies.edit.title')}>
       <MovieForm
         mode="edit"
         onSubmit={handleSubmit}
@@ -54,7 +54,7 @@ const EditPage = (): ReactElement => {
         error={item.error}
         isLoading={item.status === Status.pending}
       />
-    </div>
+    </PageWrapper>
   );
 };
 

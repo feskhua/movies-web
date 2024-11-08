@@ -19,7 +19,7 @@ export const moviesUpdateRequest = <T = Movie>(payload: ManageMoviePayload) => {
 };
 
 export const moviesCreateRequest = <T = Movie>(payload: ManageMoviePayload) => {
-  return nextApiClient.post<Movie>('movies/add', createFormData(payload));
+  return nextApiClient.post<Movie>('movies/create', createFormData(payload));
 };
 
 export const moviesDeleteRequest = <T = Movie>(id: number) => {

@@ -17,4 +17,7 @@ npm run dev
 
 Project is built using Next.js framework and Typescript and uses 'Pages' router.
 
+### Requirements
+- Node.js = 20.x
+
 
