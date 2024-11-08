@@ -14,10 +14,6 @@ export const resources = {
 
 let lng = 'en';
 
-if (typeof window !== 'undefined') {
-  lng = localStorage.getItem('lang') || 'en';
-}
-
 i18n
   .use(initReactI18next)
   .init({

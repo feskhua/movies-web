@@ -15,7 +15,6 @@ export const ButtonLanguage = (): ReactElement => {
     const newLang = isEng ? 'ua' : 'en';
 
     void i18n.changeLanguage(newLang);
-    localStorage.setItem('lang', newLang);
   }, [i18n]);
 
   return (
