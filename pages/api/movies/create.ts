@@ -20,15 +20,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       return;
     }
+    
+    let file = undefined;
+    
+    if (files.file) {
+      const buffer = fs.readFileSync(files.file?.[0].filepath as string);
+      const blob = new Blob([buffer], { type: files.file?.[0].mimetype as string });
+
+      file = new File([blob], files.file?.[0].originalFilename as string, { type: files.file?.[0].mimetype as string });
+    }
 
     const sessionData = fields as unknown as ManageMoviePayload;
-    const buffer = fs.readFileSync(files.file?.[0].filepath as string);
-    const blob = new Blob([buffer], { type: files.file?.[0].mimetype as string });
 
     const formData = createFormData({
       title: sessionData.title,
       year: sessionData.year,
-      file: new File([blob], files.file?.[0].originalFilename as string, { type: files.file?.[0].mimetype as string })
+      file: file
     });
 
     try {
