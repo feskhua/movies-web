@@ -73,7 +73,7 @@ export default function Movies(): ReactNode {
                   variant="primary"/>
         </div>
       )}
-      <div className="flex w-full max-w-screen-xl flex-col gap-10 px-6 md:px-30">
+      <div className="flex w-full max-w-screen-xl flex-col gap-10 px-6 pb-6 md:px-30">
         {hasMovies && (
           <div className="flex w-full flex-col self-start bg-background gap-30">
             <div className="grid grid-cols-12 gap-2 md:gap-4 xl:gap-6">
