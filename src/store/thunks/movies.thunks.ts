@@ -1,7 +1,13 @@
+import {
+  moviesCreateRequest,
+  moviesDeleteRequest,
+  moviesItemRequest,
+  moviesListRequest,
+  moviesUpdateRequest
+} from '@/src/requests/movies';
 import { HttpResponseErrorType, ManageMoviePayload, Movie, MovieListParams, MoviesListResponse } from '@/src/types';
 import { BaseAsyncThunkOptions } from '@/src/types/store';
-import { createFormData } from '@/src/utils';
-import { handleHttpError, nextApiClient } from '@/src/utils/request';
+import { handleHttpError } from '@/src/utils/request';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const moviesFetchMovieListFactory = (type: string) => createAsyncThunk<
@@ -10,7 +16,7 @@ export const moviesFetchMovieListFactory = (type: string) => createAsyncThunk<
   BaseAsyncThunkOptions
 >(type, async (params, { rejectWithValue }) => {
   try {
-    const response = await nextApiClient.get<MoviesListResponse>('movies/list', { params });
+    const response = await moviesListRequest(params);
 
     return response.data;
   } catch (e) {
@@ -24,11 +30,7 @@ export const moviesCreateThunkFactory = (type:string) => createAsyncThunk<
   BaseAsyncThunkOptions
 >(type, async (data, { rejectWithValue }) => {
   try {
-    const response = await nextApiClient.post<Movie>('movies/create', createFormData(data), {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    const response = await moviesCreateRequest(data);
 
     return response.data;
   } catch (e) {
@@ -42,7 +44,7 @@ export const moviesFetchItemThunkFactory = (type: string) => createAsyncThunk<
   BaseAsyncThunkOptions
 >(type, async (id, { rejectWithValue }) => {
   try {
-    const response = await nextApiClient.get<Movie>(`movies/${id}`);
+    const response = await moviesItemRequest(id);
 
     return response.data;
   } catch (e) {
@@ -56,7 +58,7 @@ export const moviesUpdateThunkFactory = (type: string) => createAsyncThunk<
   BaseAsyncThunkOptions
 >(type, async (data, { rejectWithValue }) => {
   try {
-    const response = await nextApiClient.patch<Movie>(`movies/${data.id}`, createFormData(data));
+    const response = await moviesUpdateRequest(data);
 
     return response.data;
   } catch (e) {
@@ -70,7 +72,7 @@ export const moviesDeleteThunkFactory = (type: string) => createAsyncThunk<
   BaseAsyncThunkOptions
 >(type, async (id, { rejectWithValue }) => {
   try {
-    const response = await nextApiClient.delete<Movie>(`movies/${id}`);
+    const response = await moviesDeleteRequest(id);
 
     return response.data;
   } catch (e) {

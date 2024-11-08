@@ -16,6 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps
         {...rest}
         className={clsx(
           className,
+          // eslint-disable-next-line max-len
           'px-4 py-2 rounded-lg2 w-full transition-all bg-input text-white focus:border-input focus:outline-none focus:bg-transparent focus:ring-input focus:ring-1 h-11.25',
           {
             'border-1 border-input': !error,

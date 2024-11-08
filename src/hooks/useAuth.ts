@@ -14,7 +14,7 @@ export const useAuth = () => {
   // login request
   const login = useCallback((value: AuthLoginRequestValue) => {
     return dispatch(authLoginThunk(value)).unwrap();
-  }, []);
+  }, [dispatch]);
 
   // registration request
   const registration = useCallback((value: AuthRegisterRequestValue) => {

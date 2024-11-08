@@ -10,6 +10,7 @@ export const Checkbox = (props: CheckboxProps): ReactElement => {
       <label className="flex items-center cursor-pointer relative" htmlFor="check">
         <input
           type="checkbox"
+          // eslint-disable-next-line max-len
           className="peer h-5 w-5 cursor-pointer transition-all appearance-none bg-input rounded shadow hover:shadow-md checked:ring-1 checked:ring-input checked:bg-transparent"
           id="check"
           {...rest}

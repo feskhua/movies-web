@@ -26,8 +26,8 @@ export default function Auth(): ReactNode {
   };
 
   return (
-    <div className="flex flex-col px-30 self-start bg-background gap-30 max-w-screen-xl">
-      <h2 className="font-semibold text-heading-two text-white">{t('movies.add.title')}</h2>
+    <div className="flex flex-col md:px-30 px-6 self-start bg-background gap-30 w-full max-w-screen-xl">
+      <h2 className="font-semibold md:text-heading-two  text-heading-three text-white">{t('movies.add.title')}</h2>
       <MovieForm
         mode="add"
         onSubmit={handleSubmit}

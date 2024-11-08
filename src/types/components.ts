@@ -1,5 +1,5 @@
-import {ManageMoviePayload, Movie} from "@/src/types/fetch";
-import {ButtonHTMLAttributes, HTMLAttributes, InputHTMLAttributes} from 'react';
+import { ManageMoviePayload, Movie } from '@/src/types/fetch';
+import { ButtonHTMLAttributes, HTMLAttributes, InputHTMLAttributes } from 'react';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
@@ -31,7 +31,7 @@ export interface MovieFormProps {
   onCancel?: () => void;
   onDelete?: () => void;
   onSubmit: (data: ManageMoviePayload) => void;
-  data?: Movie
+  data?: Movie;
   error?: string;
 }
 

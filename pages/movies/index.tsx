@@ -1,4 +1,4 @@
-import { Button, Card } from '@/src/components';
+import { Button, ButtonLanguage, Card } from '@/src/components';
 import { Pagination } from '@/src/components/Pagination';
 import { useAuth, useMoviesList } from '@/src/hooks';
 import { ExitIcon, PlusIcon } from '@/src/icons';
@@ -36,15 +36,15 @@ export default function Movies(): ReactNode {
 
   return (
     <>
-      <div className="fixed justify-between top-0 p-30 w-full flex">
-        <div className="flex-1">
+      <div className="top-0 flex w-full justify-between p-6 pb-20 md:p-30">
+        <div className="flex flex-1 items-center gap-2">
           {hasMovies && (
             <>
-              <h2 className="font-semibold md:text-heading-two text-white">
+              <h2 className="font-semibold text-white text-heading-three md:text-heading-two">
                 {t('movies.title')}
               </h2>
               <Link
-                className="hover:animate-pulse sm:scale-75 md:scale-100 md:mt-2"
+                className="hover:animate-pulse sm:scale-75 md:mt-2 md:scale-100"
                 href="/movies/add"
               >
                 <PlusIcon/>
@@ -52,36 +52,36 @@ export default function Movies(): ReactNode {
             </>
           )}
         </div>
-
-        <div className="flex self-end">
+        <div className="flex">
+          <ButtonLanguage/>
           <button
             onClick={handleLogout}
-            className="flex align-middle justify-center items-center gap-4 pr-0"
+            className="flex items-center justify-center gap-4 pr-0 align-middle"
           >
-            <span className="hidden md:block text-white">
+            <span className="hidden text-white md:block">
               {t('auth.title.logout')}
             </span>
             <ExitIcon/>
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-10">
-        {!hasMovies && (
-          <>
-            <h2 className="font-semibold text-heading-two text-white">Your movie list is empty</h2>
-            <Button text={t('movies.button.add')} onClick={handleAddMovie} className="w-50.5 self-center"
-                    variant="primary"/>
-          </>
-        )}
-
+      {!hasMovies && (
+        <div
+          className="flex min-h-full flex-col items-center justify-center gap-10 self-center text-center h-screen-minus-128 md:h-full md:pt-40">
+          <h2 className="font-semibold text-white text-heading-three md:text-heading-two">Your movie list is empty</h2>
+          <Button text={t('movies.button.add')} onClick={handleAddMovie} className="w-full self-center md:w-50.5"
+                  variant="primary"/>
+        </div>
+      )}
+      <div className="flex w-full max-w-screen-xl flex-col gap-10 px-6 md:px-30">
         {hasMovies && (
-          <div className="flex flex-col px-30 self-start bg-background gap-30 max-w-screen-xl">
-            <div className="grid xl:gap-6 md:gap-4 gap-2 grid-cols-12">
+          <div className="flex w-full flex-col self-start bg-background gap-30">
+            <div className="grid grid-cols-12 gap-2 md:gap-4 xl:gap-6">
               {list.movies.map((movie) => (
                 <Link
                   key={movie.id}
                   href={`/movies/edit/${movie.id}`}
-                  className="xl:col-span-3 md:col-span-4 col-span-6 cursor-pointer"
+                  className="col-span-6 cursor-pointer md:col-span-4 xl:col-span-3"
                 >
                   <Card
                     title={movie.title}

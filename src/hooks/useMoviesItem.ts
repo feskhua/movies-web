@@ -20,8 +20,6 @@ export const useMoviesItem = (params: UseMoviesItemParams) => {
   const [autoloadState, setAutoloadState] = useState(params.autoload ?? false);
 
   useEffect(() => {
-    console.log('useEffect', autoloadState, id);
-
     if (!autoloadState) {
       return;
     }

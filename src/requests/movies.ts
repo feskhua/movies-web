@@ -1,10 +1,29 @@
-import { AuthLoginFetchDataValue, AuthRegisterFetchDataValue, AuthResponse, MoviesListResponse } from '@/src/types';
+import {
+  AuthLoginFetchDataValue,
+  AuthRegisterFetchDataValue,
+  AuthResponse, ManageMoviePayload,
+  Movie, MovieListParams,
+  MoviesListResponse
+} from '@/src/types';
+import { createFormData } from '@/src/utils';
 import { nextApiClient } from '@/src/utils/request';
 
-export const moviesListRequest = <T = MoviesListResponse>(payload: AuthLoginFetchDataValue) => {
-  return nextApiClient.post<T>('/api/moviesList', payload);
+export const moviesListRequest = <T = MoviesListResponse>(params: MovieListParams) => {
+  return nextApiClient.get<T>('/movies/list', { params });
 };
 
-export const authRegistrationRequest = <T = AuthResponse>(payload: AuthRegisterFetchDataValue) => {
-  return nextApiClient.post<T>('auth/register', payload);
+export const moviesItemRequest = <T = Movie>(id: number) => {
+  return nextApiClient.get<Movie>(`movies/${id}`);
+};
+
+export const moviesUpdateRequest = <T = Movie>(payload: ManageMoviePayload) => {
+  return nextApiClient.patch<Movie>(`movies/edit/${payload.id}`, createFormData(payload));
+};
+
+export const moviesCreateRequest = <T = Movie>(payload: ManageMoviePayload) => {
+  return nextApiClient.post<Movie>('movies/add', createFormData(payload));
+};
+
+export const moviesDeleteRequest = <T = Movie>(id: number) => {
+  return nextApiClient.delete<Movie>(`movies/${id}`);
 };

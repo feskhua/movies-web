@@ -25,6 +25,9 @@ export const translationEn = {
     'add': {
       'title': 'Create a new movie',
     },
+    'edit': {
+      'title': 'Edit'
+    },
     'form': {
       'placeholder': {
         'title': 'Title',

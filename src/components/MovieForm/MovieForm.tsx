@@ -14,10 +14,8 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
     isLoading,
     data,
     error,
-    mode = 'create',
     onSubmit,
     onCancel,
-    onDelete,
   } = props;
 
   const [base64image, setBase64image] = useState<string | null>();
@@ -79,7 +77,7 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
 
   return (
     <div className="grid grid-cols-12 md:gap-6 gap-2">
-      <div className="hidden md:block md:col-span-5 col-span-12">
+      <div className="hidden md:block md:col-span-6 col-span-12">
         <DragEndDrop onDrop={handleDrop} value={preview}/>
       </div>
       <form onSubmit={handleSubmit(submit)} className="md:col-start-7 md:col-span-4 col-span-12">
@@ -125,27 +123,13 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
           <div className="md:hidden block">
             <DragEndDrop onDrop={handleDrop} value={preview}/>
           </div>
-          <div className={clsx(
-            'grid gap-4 mt-6',
-            {
-              'grid-cols-3': mode === 'edit',
-              'grid-cols-2': mode !== 'edit',
-            }
-          )}>
+          <div className={clsx('grid gap-4 mt-6 grid-cols-2')}>
             <Button
               variant="outline"
               text={t('movies.form.button.cancel')}
               type="button"
               onClick={() => onCancel && onCancel()}
             />
-            {mode === 'edit' && (
-              <Button
-                text={t('movies.form.button.delete')}
-                disabled={isLoading}
-                variant="danger"
-                onClick={() => onDelete && onDelete()}
-              />
-            )}
             <Button
               text={t('movies.form.button.submit')}
               disabled={isLoading}

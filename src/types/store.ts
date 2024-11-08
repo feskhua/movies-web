@@ -22,7 +22,7 @@ export interface AuthRegisterRequestValue extends AuthRegisterFetchDataValue {
 
 export interface BaseAsyncThunkOptions<E = ErrorType[], S = RootState> {
   rejectValue: E;
-  state: any;
+  state: S;
 }
 
 export interface BaseResolveType {

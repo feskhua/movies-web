@@ -5,12 +5,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
-  console.log('req', req.method);
-
   if (req.method === 'PATCH') {
     const sessionData = req.body as ManageMoviePayload;
     const formData = new FormData();
-
     formData.append('title', sessionData.title);
     formData.append('year', sessionData.year.toString());
 

@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        'screen-minus-128': 'calc(100vh - 128px)',
+      },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
       },
@@ -23,6 +26,7 @@ const config: Config = {
         13.5: '54px',
         30: '120px',
         50.5: '202px',
+        100: '400px',
         118.25: '473px',
         126: '504px',
       },

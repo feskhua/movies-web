@@ -23,7 +23,7 @@ export const ButtonLanguage = (): ReactElement => {
       className="select-none px-6 hover:animate-pulse py-4  flex justify-center items-center cursor-pointer"
       onClick={switchLanguage}
     >
-      <span className="text-heading-two">
+      <span className="text-heading-three">
         {languageMap[i18n.language]}
       </span>
     </div>
