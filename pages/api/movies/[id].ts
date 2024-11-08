@@ -15,28 +15,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       formData.append('file', sessionData.file);
     }
 
-    const response = await apiClient.post(`/movies/${id}`, formData, {
-      headers: {
-        'Authorization': `Bearer ${req.cookies['session']}`
-      }
-    });
+    try {
+      const response = await apiClient.post(`/movies/${id}`, formData, {
+        headers: {
+          'Authorization': `Bearer ${req.cookies['session']}`
+        }
+      });
 
-    res.send(response.data);
+      res.send(response.data);
+    } catch (error: any) {
+      res.status(error.response.status).json(error.response.data);
+    }
   } else if (req.method === 'GET') {
-    const response = await apiClient.get(`/movies/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${req.cookies['session']}`
-      }
-    });
+    try {
+      const response = await apiClient.get(`/movies/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${req.cookies['session']}`
+        }
+      });
 
-    res.send(response.data);
+      res.send(response.data);
+    } catch (error: any) {
+      res.status(error.response.status).send(error.response.data);
+    }
   } else if (req.method === 'DELETE') {
-    const response = await apiClient.delete(`/movies/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${req.cookies['session']}`
-      }
-    });
+    try {
+      const response = await apiClient.delete(`/movies/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${req.cookies['session']}`
+        }
+      });
 
-    res.send(response.data);
+      res.send(response.data);
+    } catch (error: any) {
+      res.status(error.response.status).send(error.response.data);
+    }
   }
 }

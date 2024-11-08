@@ -12,13 +12,11 @@ export const resources = {
   }
 };
 
-let lng = 'en';
-
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng,
+    lng: 'en',
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false

@@ -12,9 +12,11 @@ import { z } from 'zod';
 export const MovieForm = (props: MovieFormProps): ReactElement => {
   const {
     isLoading,
+    mode,
     data,
     error,
     onSubmit,
+    onDelete,
     onCancel,
   } = props;
 
@@ -91,7 +93,6 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
                 <Input
                   {...field}
                   placeholder={t('movies.form.placeholder.title')}
-                  disabled={isLoading}
                   error={errors.title?.message}
                 />
               )}
@@ -104,7 +105,7 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
                 <Input
                   {...field}
                   placeholder={t('movies.form.placeholder.year') ?? 1900}
-                  disabled={isLoading}
+
                   error={errors.year?.message}
                   className="md:w-3/5 sm:w-full"
                   onChange={(e) => {
@@ -114,7 +115,7 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
                       return;
                     }
 
-                    field.onChange(isNumber(Number(e.target.value)) ? Number(e.target.value) : 1900);
+                    field.onChange(isNaN(Number(e.target.value)) ? 1900 : Number(e.target.value));
                   }}
                 />
               )}
@@ -123,16 +124,25 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
           <div className="md:hidden block">
             <DragEndDrop onDrop={handleDrop} value={preview}/>
           </div>
-          <div className={clsx('grid gap-4 mt-6 grid-cols-2')}>
+          <div className={clsx('grid gap-4 mt-6', {
+            'md:grid-cols-3': mode === 'edit',
+            'md:grid-cols-2': mode === 'add',
+          })}>
             <Button
               variant="outline"
               text={t('movies.form.button.cancel')}
               type="button"
               onClick={() => onCancel && onCancel()}
             />
+            {mode === 'edit' && (
+              <Button
+                variant="danger"
+                text={t('movies.form.button.delete')}
+                onClick={() => onDelete && onDelete()}
+              />
+            )}
             <Button
               text={t('movies.form.button.submit')}
-              disabled={isLoading}
               variant="primary"
               type="submit"
             />

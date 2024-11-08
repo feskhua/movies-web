@@ -31,13 +31,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       file: new File([blob], files.file?.[0].originalFilename as string, { type: files.file?.[0].mimetype as string })
     });
 
-    const response = await apiClient.post('/movies', formData, {
-      headers: {
-        'Authorization': `Bearer ${req.cookies['session']}`,
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    try {
+      const response = await apiClient.post('/movies', formData, {
+        headers: {
+          'Authorization': `Bearer ${req.cookies['session']}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      });
 
-    res.send(response.data);
+      res.send(response.data);
+    } catch (error: any) {
+      res.status(error.response.status).json(error.response.data);
+    }
   });
 }

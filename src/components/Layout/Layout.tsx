@@ -1,10 +1,17 @@
 import { PropsWithChildren, ReactElement } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 export const Layout = ({ children }: PropsWithChildren<{}>): ReactElement => {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="bg-background">
+      <div className="bg-background h-full w-full justify-center flex min-h-svh">
+        <div className="flex w-full max-w-screen-xl">
+          <div className="md:p-30 grid p-4 z-20 flex-auto -mt">
         {children}
-      <div className="w-full fixed bottom-0">
+          </div>
+        </div>
+      </div>
+      <div className="bottom-0 overflow-hidden left-0 w-full z-10 mt-[-150px]">
         <svg viewBox="0 0 1440 111" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"

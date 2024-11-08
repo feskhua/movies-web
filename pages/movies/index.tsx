@@ -35,70 +35,87 @@ export default function Movies(): ReactNode {
   }, []);
 
   return (
-    <>
-      <div className="top-0 flex w-full justify-between p-6 pb-20 md:p-30">
-        <div className="flex flex-1 items-center gap-2">
-          {hasMovies && (
-            <>
-              <h2 className="font-semibold text-white text-heading-three md:text-heading-two">
-                {t('movies.title')}
-              </h2>
-              <Link
-                className="hover:animate-pulse sm:scale-75 md:mt-2 md:scale-100"
-                href="/movies/add"
-              >
-                <PlusIcon/>
-              </Link>
-            </>
-          )}
-        </div>
-        <div className="flex">
-          <ButtonLanguage/>
-          <button
-            onClick={handleLogout}
-            className="flex items-center justify-center gap-4 pr-0 align-middle"
-          >
-            <span className="hidden text-white md:block">
-              {t('auth.title.logout')}
-            </span>
-            <ExitIcon/>
-          </button>
-        </div>
-      </div>
-      {!hasMovies && (
-        <div
-          className="flex min-h-full flex-col items-center justify-center gap-10 self-center text-center h-screen-minus-128 md:h-full md:pt-40">
-          <h2 className="font-semibold text-white text-heading-three md:text-heading-two">Your movie list is empty</h2>
-          <Button text={t('movies.button.add')} onClick={handleAddMovie} className="w-full self-center md:w-50.5"
-                  variant="primary"/>
-        </div>
-      )}
-      <div className="flex w-full max-w-screen-xl flex-col gap-10 px-6 pb-6 md:px-30">
-        {hasMovies && (
-          <div className="flex w-full flex-col self-start bg-background gap-30">
-            <div className="grid grid-cols-12 gap-2 md:gap-4 xl:gap-6">
-              {list.movies.map((movie) => (
+    <div className="flex flex-col md:pt-0 py-8 h-full">
+      <div className="max-h-fit md:col-start-5  flex flex-col  md:col-span-4 col-span-12 items-center gap-14">
+        <div className="flex items-center w-full justify-between md:mb-20 mb-10">
+          <div className="flex items-center gap-2">
+            {hasMovies && (
+              <>
+                <h2 className="font-semibold text-white text-heading-three md:text-heading-two">
+                  {t('movies.title')}
+                </h2>
                 <Link
-                  key={movie.id}
-                  href={`/movies/edit/${movie.id}`}
-                  className="col-span-6 cursor-pointer md:col-span-4 xl:col-span-3"
+                  className="hover:animate-pulse sm:scale-75 md:mt-2 md:scale-100"
+                  href="/movies/add"
                 >
-                  <Card
-                    title={movie.title}
-                    year={movie.year}
-                    path={movie.poster}
-                  />
+                  <PlusIcon/>
                 </Link>
-              ))}
-            </div>
-            <Pagination
-              page={list.page}
-              totalPages={Math.ceil(list.total / list.limit)}
-              onChange={list.changePage}
-            />
+              </>
+            )}
           </div>
-        )}
+          <div className="flex">
+            <ButtonLanguage/>
+            <button
+              onClick={handleLogout}
+              className="flex items-center justify-center gap-4 pr-0 align-middle"
+            >
+              <span className="hidden text-white md:block">
+                {t('auth.title.logout')}
+              </span>
+              <ExitIcon/>
+            </button>
+          </div>
+        </div>
+        <div className={'flex flex-col flex-auto relative w-full'}>
+          <div className="flex flex-auto flex-col w-full">
+            {!hasMovies && (
+              <div
+                className="flex flex-col  justify-center items-center gap-8"
+              >
+                <h2
+                  className="font-semibold text-white text-heading-three md:text-heading-two"
+                >
+                  {t('movies.noItems')}
+                </h2>
+                <Button
+                  text={t('movies.button.add')}
+                  onClick={handleAddMovie}
+                  className="w-full self-center md:w-50.5"
+                  variant="primary"
+                />
+              </div>
+            )}
+              {hasMovies && (
+                  <div className="grid grid-cols-12 gap-2 md:gap-4 xl:gap-6">
+                    {list.movies.map((movie) => (
+                      <Link
+                        key={movie.id}
+                        href={`/movies/edit/${movie.id}`}
+                        className="col-span-6 cursor-pointer md:col-span-4 xl:col-span-3"
+                      >
+                        <Card
+                          title={movie.title}
+                          year={movie.year}
+                          path={movie.poster}
+                        />
+                      </Link>
+                    ))}
+                  </div>
+              )}
+
+            {hasMovies && (
+              <div className="my-16">
+                <Pagination
+                  page={list.page}
+                  totalPages={Math.ceil(list.total / list.limit)}
+                  onChange={list.changePage}
+                />
+              </div>
+            )}
+
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

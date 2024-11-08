@@ -16,12 +16,14 @@ export const translationEn = {
       },
       'button': {
         'login': 'Login',
-        'signup': 'Register'
+        'signup': 'Register',
+        'register': 'Register'
       }
     }
   },
   'movies': {
     'title': 'My Movies',
+    'noItems': 'Your movie list is empty',
     'add': {
       'title': 'Create a new movie',
     },
@@ -50,6 +52,28 @@ export const translationEn = {
     'pagination': {
       'previous': 'Previous',
       'next': 'Next'
+    }
+  },
+  'notifications': {
+    'login': {
+      'success': 'Login successful',
+      'error': 'Login failed'
+    },
+    'register': {
+      'success': 'Registration successful',
+      'error': 'Registration failed'
+    },
+    'update': {
+      'success': 'Movie was successfully updated',
+      'error': 'Movie update failed'
+    },
+    'create': {
+      'success': 'Movie was successfully created',
+      'error': 'Movie creation failed'
+    },
+    'delete': {
+      'success': 'Movie was successfully deleted',
+      'error': 'Movie deletion failed'
     }
   }
 };

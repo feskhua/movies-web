@@ -37,13 +37,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       file: file
     });
 
-    const response = await apiClient.patch(`/movies/${id}`, formData, {
-      headers: {
-        'Authorization': `Bearer ${req.cookies['session']}`,
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    try {
+      const response = await apiClient.patch(`/movies/${id}`, formData, {
+        headers: {
+          'Authorization': `Bearer ${req.cookies['session']}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      });
 
-    res.send(response.data);
+      res.send(response.data);
+    } catch (error: any) {
+      res.status(error.response.status).json(error.response.data);
+    }
   });
 }

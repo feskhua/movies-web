@@ -1,10 +1,11 @@
 import { MovieForm } from '@/src/components/MovieForm/MovieForm';
-import {PageWrapper} from "@/src/components/PageWrapper";
+import { PageWrapper } from '@/src/components/PageWrapper';
 import { useMoviesItem, useMoviesList } from '@/src/hooks';
 import { ManageMoviePayload, Status } from '@/src/types';
 import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 export default function Auth(): ReactNode {
   const router = useRouter();
@@ -15,7 +16,11 @@ export default function Auth(): ReactNode {
   const handleSubmit = (data: ManageMoviePayload) => {
     item
       .create(data)
+      .catch(() => {
+        toast(t('notifications.create.error'), { type: 'error' });
+      })
       .then(() => {
+        toast(t('notifications.create.success'), { type: 'success' });
         returnToList();
       });
   };

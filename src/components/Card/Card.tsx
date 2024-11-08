@@ -16,7 +16,7 @@ export const Card = (props: CardProps): ReactElement => {
           priority
           src={get(path)}
           alt={title}
-          className="object-cover rounded-lg2 aspect-[9/16]"
+          className="object-cover rounded-lg2"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>

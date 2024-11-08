@@ -16,13 +16,13 @@ export const Pagination = (props: PaginationProps): ReactElement => {
   const pages = useMemo(() => range(1, totalPages + 1), [totalPages]);
 
   const handleChange = useCallback((value: number) => {
-    if (!isEmpty(onChange)) {
-      onChange(value);
-    }
+    console.log('this');
+
+    onChange && onChange(value);
   }, [onChange]);
 
   return (
-    <div className="flex justify-center items-center space-x-4">
+    <div className="flex justify-center items-center space-x-4 text-white">
       {page > 1 && (
         <Link
           className="cursor-pointer font-bold hover:animate-pulse"
@@ -52,7 +52,7 @@ export const Pagination = (props: PaginationProps): ReactElement => {
       </div>
       {page < totalPages && (
         <Link
-          className="cursor-pointer font-bold hover:animate-pulse"
+          className="cursor-pointer font-bold hover:animate-pulse text-white"
           href={`?page=${page + 1}`}
           onClick={() => handleChange(page + 1)}
         >

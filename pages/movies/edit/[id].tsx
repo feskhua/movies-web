@@ -1,10 +1,11 @@
 import { MovieForm } from '@/src/components/MovieForm/MovieForm';
-import {PageWrapper} from "@/src/components/PageWrapper";
+import { PageWrapper } from '@/src/components/PageWrapper';
 import { useMoviesItem, useMoviesList } from '@/src/hooks';
 import { ManageMoviePayload, Status } from '@/src/types';
 import { useParams, useRouter } from 'next/navigation';
 import { ReactElement, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const EditPage = (): ReactElement => {
   const params = useParams();
@@ -24,7 +25,13 @@ const EditPage = (): ReactElement => {
   const handleSubmit = async (data: ManageMoviePayload) => {
     item
       .update(data)
+      .catch(() => {
+        toast(t('notifications.update.error'), { type: 'error' });
+      })
       .then(() => {
+        console.log('this');
+
+        toast(t('notifications.update.success'), { type: 'success' });
         returnToList();
       });
   };
@@ -33,6 +40,8 @@ const EditPage = (): ReactElement => {
     item
       .remove()
       .then(() => {
+        toast(t('notifications.delete.success'), { type: 'success' });
+
         returnToList();
       });
   };
