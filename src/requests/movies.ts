@@ -1,7 +1,5 @@
 import {
-  AuthLoginFetchDataValue,
-  AuthRegisterFetchDataValue,
-  AuthResponse, ManageMoviePayload,
+  ManageMoviePayload,
   Movie, MovieListParams,
   MoviesListResponse
 } from '@/src/types';
