@@ -19,10 +19,12 @@ export default function Movies(): ReactNode {
     autoload: true,
   });
 
-  const hasMovies = !!list.movies.length;
+  const listMovies = !!list.movies.length;
 
   useEffect(() => {
     page && list.changePage(page);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogout = () => {
@@ -32,14 +34,14 @@ export default function Movies(): ReactNode {
 
   const handleAddMovie = useCallback(() => {
     router.push('/movies/add');
-  }, []);
+  }, [router]);
 
   return (
-    <div className="flex flex-col md:pt-0 py-8 h-full">
+    <div className="flex flex-col md:pt-0 h-full">
       <div className="max-h-fit md:col-start-5  flex flex-col  md:col-span-4 col-span-12 items-center gap-14">
         <div className="flex items-center w-full justify-between md:mb-20 mb-10">
           <div className="flex items-center gap-2">
-            {hasMovies && (
+            { listMovies && (
               <>
                 <h2 className="font-semibold text-white text-heading-three md:text-heading-two">
                   {t('movies.title')}
@@ -68,7 +70,7 @@ export default function Movies(): ReactNode {
         </div>
         <div className={'flex flex-col flex-auto relative w-full'}>
           <div className="flex flex-auto flex-col w-full">
-            {!hasMovies && (
+            {! listMovies && (
               <div
                 className="flex flex-col  justify-center items-center gap-8"
               >
@@ -85,7 +87,7 @@ export default function Movies(): ReactNode {
                 />
               </div>
             )}
-              {hasMovies && (
+              { listMovies && (
                   <div className="grid grid-cols-12 gap-2 md:gap-4 xl:gap-6">
                     {list.movies.map((movie) => (
                       <Link
@@ -103,7 +105,7 @@ export default function Movies(): ReactNode {
                   </div>
               )}
 
-            {hasMovies && (
+            { listMovies && (
               <div className="my-16">
                 <Pagination
                   page={list.page}

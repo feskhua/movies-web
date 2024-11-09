@@ -11,15 +11,12 @@ export const ButtonLanguage = (): ReactElement => {
   const { i18n } = useTranslation();
 
   const switchLanguage = useCallback(() => {
-    const isEng = i18n.language === 'en';
-    const newLang = isEng ? 'ua' : 'en';
-
-    void i18n.changeLanguage(newLang);
+    void i18n.changeLanguage(i18n.language === 'en' ? 'ua' : 'en');
   }, [i18n]);
 
   return (
     <div
-      className="select-none px-6 hover:animate-pulse py-4  flex justify-center items-center cursor-pointer"
+      className="select-none  hover:animate-pulse md:py-4 flex justify-center px-6 items-center cursor-pointer"
       onClick={switchLanguage}
     >
       <span className="text-heading-three">

@@ -14,6 +14,7 @@ export const authSlice = createSlice({
     },
 
     clear: (state) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = authInitialState;
     }
   },
@@ -28,10 +29,6 @@ export const authSlice = createSlice({
     builder.addCase(authLoginThunk.fulfilled, (state: AuthState, { payload }) => {
       state.status = RequestStatus.SUCCESS;
       state.token = payload.token;
-
-      if (payload.refresh) {
-        state.refresh = payload.refresh;
-      }
     });
 
     builder.addCase(authLoginThunk.rejected, (state: AuthState, { payload }) => {
@@ -57,10 +54,6 @@ export const authSlice = createSlice({
       state.token = payload.token;
       state.id = payload.id;
 
-      if (payload.refresh) {
-        state.refresh = payload.refresh;
-      }
-
       state.response = {
         type: 'success',
         data: {
@@ -79,6 +72,7 @@ export const authSlice = createSlice({
 
     // logout
     builder.addCase(authLogoutThunk.fulfilled, (state: AuthState) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = authInitialState;
     });
   },

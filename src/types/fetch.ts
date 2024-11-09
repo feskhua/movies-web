@@ -1,7 +1,6 @@
 export interface AuthResponse {
   id: string;
   token: string;
-  refresh?: string;
 }
 
 export interface AuthLoginFetchDataValue {

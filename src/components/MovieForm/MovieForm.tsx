@@ -3,7 +3,6 @@ import { useFiles } from '@/src/hooks';
 import { MovieFormProps, MovieFormValues } from '@/src/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
-import { isNumber } from 'lodash';
 import { ReactElement, useEffect, useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +10,6 @@ import { z } from 'zod';
 
 export const MovieForm = (props: MovieFormProps): ReactElement => {
   const {
-    isLoading,
     mode,
     data,
     error,
@@ -75,7 +73,7 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
     }
 
     return base64image ? base64image : '';
-  }, [base64image, data]);
+  }, [base64image, data, get]);
 
   return (
     <div className="grid grid-cols-12 md:gap-6 gap-2">

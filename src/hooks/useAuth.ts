@@ -19,14 +19,14 @@ export const useAuth = () => {
   // registration request
   const registration = useCallback((value: AuthRegisterRequestValue) => {
     return dispatch(authRegistrationThunk(value)).unwrap();
-  }, []);
+  }, [dispatch]);
 
   // logout
   const logout = useCallback(() => {
     dispatch(authSlice.actions.clear());
 
     return dispatch(authLogoutThunk({})).unwrap();
-  }, []);
+  }, [dispatch]);
 
   return {
     status,

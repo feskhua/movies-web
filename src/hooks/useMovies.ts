@@ -26,10 +26,12 @@ export const useMoviesList = (params: UseMoviesListParams = {}) => {
     return () => {
       loadDebounce.cancel();
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoloadState, page]);
 
   const load = () => {
-    dispatch(moviesFetchMovieList({ page }));
+    dispatch(moviesFetchMovieList({ page })).unwrap();
   };
 
   const changePage = (page: number) => {

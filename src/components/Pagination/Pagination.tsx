@@ -31,7 +31,7 @@ export const Pagination = (props: PaginationProps): ReactElement => {
         </Link>
       )}
       <div className="flex justify-center items-center space-x-2">
-        {pages.map((p) => (
+        {pages.length > 1 && pages.map((p) => (
           <Link
             key={p}
             className={clsx(

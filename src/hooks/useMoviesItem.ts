@@ -31,6 +31,7 @@ export const useMoviesItem = (params: UseMoviesItemParams) => {
     return () => {
       loadDebounce.cancel();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoloadState, id]);
 
   const load = () => {
@@ -38,6 +39,7 @@ export const useMoviesItem = (params: UseMoviesItemParams) => {
   };
 
   const create = (data: ManageMoviePayload) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, ...rest } = data;
 
     return dispatch(moviesCreateThunk(rest)).unwrap();

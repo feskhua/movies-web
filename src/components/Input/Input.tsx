@@ -1,10 +1,6 @@
+import { InputProps } from '@/src/types';
 import clsx from 'clsx';
-import { forwardRef, InputHTMLAttributes, type ReactElement } from 'react';
-
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeholder: string;
-  error?: string;
-}
+import { forwardRef, type ReactElement } from 'react';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props: InputProps, ref): ReactElement => {
   const { error, className, ...rest } = props;

@@ -19,6 +19,11 @@ export interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
   onChange?: () => void;
 }
 
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  placeholder: string;
+  error?: string;
+}
+
 export interface DragEndDropProps {
   value?: string | null;
   className?: string;
@@ -26,7 +31,6 @@ export interface DragEndDropProps {
 }
 
 export interface MovieFormProps {
-  isLoading?: boolean;
   mode?: 'edit' | 'add';
   onCancel?: () => void;
   onDelete?: () => void;

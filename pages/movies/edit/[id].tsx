@@ -1,7 +1,7 @@
 import { MovieForm } from '@/src/components/MovieForm/MovieForm';
 import { PageWrapper } from '@/src/components/PageWrapper';
 import { useMoviesItem, useMoviesList } from '@/src/hooks';
-import { ManageMoviePayload, Status } from '@/src/types';
+import { ManageMoviePayload } from '@/src/types';
 import { useParams, useRouter } from 'next/navigation';
 import { ReactElement, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,8 @@ const EditPage = (): ReactElement => {
     return () => {
       item.clear();
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params?.id]);
 
   const handleSubmit = async (data: ManageMoviePayload) => {
@@ -66,7 +68,6 @@ const EditPage = (): ReactElement => {
         onDelete={handleDelete}
         data={item.data ?? undefined}
         error={item.error}
-        isLoading={item.status === Status.pending}
       />
     </PageWrapper>
   );

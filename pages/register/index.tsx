@@ -39,9 +39,9 @@ export default function Register(): ReactNode {
   });
 
   const onSubmit = (data: RegisterFormValues) => {
-    const success = auth.registration(data).catch(() => {
-      toast(t('notifications.register.error'), { type: 'error' });
-    }).then((value) => {
+    auth.registration(data)
+      .catch(() => {toast(t('notifications.register.error'), { type: 'error' });})
+      .then((value) => {
       if (value) {
         toast(t('notifications.register.success'), { type: 'success' });
         value && router.push('/movies');

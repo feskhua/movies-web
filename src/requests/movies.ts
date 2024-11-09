@@ -11,17 +11,17 @@ export const moviesListRequest = <T = MoviesListResponse>(params: MovieListParam
 };
 
 export const moviesItemRequest = <T = Movie>(id: number) => {
-  return nextApiClient.get<Movie>(`/movies/${id}`);
+  return nextApiClient.get<T>(`/movies/${id}`);
 };
 
 export const moviesUpdateRequest = <T = Movie>(payload: ManageMoviePayload) => {
-  return nextApiClient.patch<Movie>(`/movies/edit/${payload.id}`, createFormData(payload));
+  return nextApiClient.patch<T>(`/movies/edit/${payload.id}`, createFormData(payload));
 };
 
 export const moviesCreateRequest = <T = Movie>(payload: ManageMoviePayload) => {
-  return nextApiClient.post<Movie>('/movies/create', createFormData(payload));
+  return nextApiClient.post<T>('/movies/create', createFormData(payload));
 };
 
 export const moviesDeleteRequest = <T = Movie>(id: number) => {
-  return nextApiClient.delete<Movie>(`/movies/${id}`);
+  return nextApiClient.delete<T>(`/movies/${id}`);
 };
