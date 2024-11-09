@@ -1,6 +1,6 @@
 import { PaginationProps } from '@/src/types';
 import clsx from 'clsx';
-import { isEmpty, range } from 'lodash';
+import { range } from 'lodash';
 import Link from 'next/link';
 import { ReactElement, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,8 +16,6 @@ export const Pagination = (props: PaginationProps): ReactElement => {
   const pages = useMemo(() => range(1, totalPages + 1), [totalPages]);
 
   const handleChange = useCallback((value: number) => {
-    console.log('this');
-
     onChange && onChange(value);
   }, [onChange]);
 

@@ -28,11 +28,11 @@ const EditPage = (): ReactElement => {
       .catch(() => {
         toast(t('notifications.update.error'), { type: 'error' });
       })
-      .then(() => {
-        console.log('this');
-
-        toast(t('notifications.update.success'), { type: 'success' });
-        returnToList();
+      .then((value) => {
+        if (value) {
+          toast(t('notifications.update.success'), { type: 'success' });
+          returnToList();
+        }
       });
   };
 
@@ -42,10 +42,12 @@ const EditPage = (): ReactElement => {
       .catch(() => {
         toast(t('notifications.delete.error'), { type: 'error' });
       })
-      .then(() => {
-        toast(t('notifications.delete.success'), { type: 'success' });
+      .then((value) => {
+        if (value) {
+          toast(t('notifications.delete.success'), { type: 'success' });
 
-        returnToList();
+          returnToList();
+        }
       });
   };
 

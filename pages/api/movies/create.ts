@@ -2,6 +2,7 @@ import { ManageMoviePayload } from '@/src/types';
 import { createFormData } from '@/src/utils';
 import { apiClient } from '@/src/utils/request';
 import { IncomingForm } from 'formidable';
+import {File} from '@web-std/file';
 import * as fs from 'fs';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -28,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const buffer = fs.readFileSync(files.file?.[0].filepath as string);
         const blob = new Blob([buffer], { type: files.file?.[0].mimetype as string });
 
-        file = new File([blob], files.file?.[0].originalFilename as string, { type: files.file?.[0].mimetype as string });
+        file = new File([blob] as BlobPart[], files.file?.[0].originalFilename as string, { type: files.file?.[0].mimetype as string });
       }
 
       const sessionData = fields as unknown as ManageMoviePayload;

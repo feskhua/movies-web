@@ -34,8 +34,6 @@ export default function Auth(): ReactNode {
   });
 
   const onSubmit = (data: LoginFormValues) => {
-    console.log('submit');
-
     auth.login(data)
       .catch(() => {
         toast(t('notifications.login.error'), { type: 'error' });
