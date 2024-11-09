@@ -10,7 +10,7 @@ export const Button = (props: ButtonProps): ReactElement => {
       {...props}
       className={clsx(
         className,
-        'px-6 py-2 rounded-lg font-semibold focus:outline-none h-13.5',
+        'px-6 py-2 rounded-lg font-semibold focus:outline-none h-13.5 truncate',
         {
           'bg-primary hover:bg-green-600 text-white': variant === 'primary',
           'bg-card hover:bg-teal-900 text-white': variant === 'secondary',

@@ -5,3 +5,4 @@ export * from './Checkbox';
 export * from './DragAndDrop';
 export * from './Input';
 export * from './Layout';
+export * from './Waves';

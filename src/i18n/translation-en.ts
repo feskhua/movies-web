@@ -31,6 +31,16 @@ export const translationEn = {
       'title': 'Edit'
     },
     'form': {
+      'error': {
+        'title': {
+          'required': 'Title is required',
+        },
+        'year': {
+          'required': 'Year is required',
+          'min': 'Year must be greater than 1900',
+          'max': 'Year must be less than current year',
+        },
+      },
       'placeholder': {
         'title': 'Title',
         'year': 'Year'

@@ -1,6 +1,8 @@
+import { IconButton } from '@/src/components/IconButton';
 import { MovieForm } from '@/src/components/MovieForm/MovieForm';
 import { PageWrapper } from '@/src/components/PageWrapper';
 import { useMoviesItem, useMoviesList } from '@/src/hooks';
+import { DeleteIcon } from '@/src/icons';
 import { ManageMoviePayload } from '@/src/types';
 import { useParams, useRouter } from 'next/navigation';
 import { ReactElement, useEffect } from 'react';
@@ -60,12 +62,17 @@ const EditPage = (): ReactElement => {
   };
 
   return (
-    <PageWrapper title={t('movies.edit.title')}>
+    <PageWrapper
+      title={t('movies.edit.title')}
+      headerChildren={
+      <IconButton
+        icon={<DeleteIcon/>}
+        onClick={handleDelete}
+      />
+    }>
       <MovieForm
-        mode="edit"
         onSubmit={handleSubmit}
         onCancel={returnToList}
-        onDelete={handleDelete}
         data={item.data ?? undefined}
         error={item.error}
       />

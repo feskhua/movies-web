@@ -1,4 +1,5 @@
 import { Button, ButtonLanguage, Card } from '@/src/components';
+import { IconButton } from '@/src/components/IconButton';
 import { Pagination } from '@/src/components/Pagination';
 import { useAuth, useMoviesList } from '@/src/hooks';
 import { ExitIcon, PlusIcon } from '@/src/icons';
@@ -25,7 +26,7 @@ export default function Movies(): ReactNode {
     page && list.changePage(page);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page]);
 
   const handleLogout = () => {
     auth.logout();
@@ -46,26 +47,18 @@ export default function Movies(): ReactNode {
                 <h2 className="font-semibold text-white text-heading-three md:text-heading-two">
                   {t('movies.title')}
                 </h2>
-                <Link
-                  className="hover:animate-pulse sm:scale-75 md:mt-2 md:scale-100"
-                  href="/movies/add"
-                >
-                  <PlusIcon/>
-                </Link>
+                <IconButton icon={<PlusIcon/>} onClick={handleAddMovie}/>
               </>
             )}
           </div>
           <div className="flex">
             <ButtonLanguage/>
-            <button
+            <IconButton
+              icon={<ExitIcon/>}
               onClick={handleLogout}
+              title={t('auth.title.logout')}
               className="flex items-center justify-center gap-4 pr-0 align-middle"
-            >
-              <span className="hidden text-white md:block">
-                {t('auth.title.logout')}
-              </span>
-              <ExitIcon/>
-            </button>
+            />
           </div>
         </div>
         <div className={'flex flex-col flex-auto relative w-full'}>

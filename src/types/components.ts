@@ -1,5 +1,5 @@
 import { ManageMoviePayload, Movie } from '@/src/types/fetch';
-import { ButtonHTMLAttributes, HTMLAttributes, InputHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, HTMLAttributes, InputHTMLAttributes, ReactElement } from 'react';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
@@ -31,9 +31,7 @@ export interface DragEndDropProps {
 }
 
 export interface MovieFormProps {
-  mode?: 'edit' | 'add';
   onCancel?: () => void;
-  onDelete?: () => void;
   onSubmit: (data: ManageMoviePayload) => void;
   data?: Movie;
   error?: string;
@@ -61,4 +59,12 @@ export interface CardProps {
 
 export interface PageWrapperProps {
   title: string;
+  headerChildren?: ReactElement;
+}
+
+export interface IconButtonProps {
+  icon: ReactElement;
+  className?: string;
+  onClick: () => void;
+  title?: string;
 }

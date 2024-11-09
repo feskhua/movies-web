@@ -27,7 +27,20 @@ export const translationUa = {
     'add': {
       'title': 'Створити новий фільм',
     },
+    'edit': {
+      'title': 'Редагувати'
+    },
     'form': {
+      'error': {
+        'title': {
+          'required': 'Назва обов\'язкова',
+        },
+        'year': {
+          'required': 'Рік обов\'язковий',
+          'min': 'Рік повинен бути більше 1900',
+          'max': 'Рік повинен бути менше поточного року',
+        },
+      },
       'placeholder': {
         'title': 'Назва',
         'year': 'Рік'
@@ -43,6 +56,9 @@ export const translationUa = {
     }
   },
   'components': {
+    'dragAndDrop': {
+      'title': 'Перетягніть зображення сюди'
+    },
     'pagination': {
       'previous': 'Попередня',
       'next': 'Наступна'

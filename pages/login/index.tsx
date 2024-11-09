@@ -89,7 +89,7 @@ export default function Auth(): ReactNode {
           />
 
           <Button text={t('auth.form.button.login')} variant="primary" className="w-full" type="submit"/>
-          <Button text={t('auth.form.button.register')} variant="primary" type="button" className="w-full" onClick={() => router.push('/register')}/>
+          <Button text={t('auth.form.button.register')} variant="outline" type="button" className="w-full" onClick={() => router.push('/register')}/>
         </form>
       </div>
     </div>

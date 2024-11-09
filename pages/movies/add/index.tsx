@@ -36,7 +36,6 @@ export default function Auth(): ReactNode {
   return (
     <PageWrapper title={t('movies.add.title')}>
         <MovieForm
-          mode="add"
           onSubmit={handleSubmit}
           onCancel={returnToList}
         />

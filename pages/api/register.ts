@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const sessionData = req.body as AuthLoginRequestValue;
     const response = await apiClient.post('/auth/register', sessionData);
 
-    const cookie = serialize('session', response?.data?.accessToken, {
+    const cookie = serialize('session', response?.data?.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       maxAge: sessionData.rememberMe ? 60 * 60 * 24 * 7 : 60 * 60 * 24,

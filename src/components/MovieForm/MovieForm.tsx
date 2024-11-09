@@ -10,11 +10,9 @@ import { z } from 'zod';
 
 export const MovieForm = (props: MovieFormProps): ReactElement => {
   const {
-    mode,
     data,
     error,
     onSubmit,
-    onDelete,
     onCancel,
   } = props;
 
@@ -26,11 +24,11 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
   const movieSchema = z.object({
     title: z
       .string()
-      .min(1, 'Name is required'),
+      .min(1, t('movies.form.error.title.required')),
     year: z
       .number()
-      .min(1900, 'Year must be at least 1900')
-      .max(new Date().getFullYear(), 'Year can\'t be in the future'),
+      .min(1900, t('movies.form.error.year.min'))
+      .max(new Date().getFullYear(), t('movies.form.error.year.max')),
     base64preview: z
       .string()
       .optional(),
@@ -77,10 +75,10 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
 
   return (
     <div className="grid grid-cols-12 md:gap-6 gap-2">
-      <div className="hidden md:block md:col-span-6 col-span-12">
+      <div className="hidden md:block xl:col-span-6 lg:col-span-5 md:col-span-4 col-span-12">
         <DragEndDrop onDrop={handleDrop} value={preview}/>
       </div>
-      <form onSubmit={handleSubmit(submit)} className="md:col-start-7 md:col-span-4 col-span-12">
+      <form onSubmit={handleSubmit(submit)} className="md:col-start-6 lg:col-start-7  xl:col-span-4 lg:col-span-5  col-span-12">
         <div className="flex flex-col h-full gap-6 w-full">
           <div className="flex flex-col gap-6">
             <Controller
@@ -122,23 +120,13 @@ export const MovieForm = (props: MovieFormProps): ReactElement => {
           <div className="md:hidden block">
             <DragEndDrop onDrop={handleDrop} value={preview}/>
           </div>
-          <div className={clsx('grid gap-4 mt-6', {
-            'md:grid-cols-3': mode === 'edit',
-            'md:grid-cols-2': mode === 'add',
-          })}>
+          <div className={clsx('grid gap-4 mt-6 md:grid-cols-2')}>
             <Button
               variant="outline"
               text={t('movies.form.button.cancel')}
               type="button"
               onClick={() => onCancel && onCancel()}
             />
-            {mode === 'edit' && (
-              <Button
-                variant="danger"
-                text={t('movies.form.button.delete')}
-                onClick={() => onDelete && onDelete()}
-              />
-            )}
             <Button
               text={t('movies.form.button.submit')}
               variant="primary"

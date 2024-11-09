@@ -15,44 +15,44 @@ export const Pagination = (props: PaginationProps): ReactElement => {
   const { t } = useTranslation();
   const pages = useMemo(() => range(1, totalPages + 1), [totalPages]);
 
-  const handleChange = useCallback((value: number) => {
+  const handleChangePage = useCallback((value: number) => {
     onChange && onChange(value);
   }, [onChange]);
 
   return (
-    <div className="flex justify-center items-center space-x-4 text-white">
+    <div className="text-white space-x-4 flex justify-center items-center">
       {page > 1 && (
         <Link
-          className="cursor-pointer font-bold hover:animate-pulse"
+          className="font-bold cursor-pointer"
           href={`?page=${page - 1}`}
-          onClick={() => handleChange(page - 1)}
+          onClick={() => handleChangePage(page - 1)}
         >
           {t('components.pagination.previous')}
         </Link>
       )}
-      <div className="flex justify-center items-center space-x-2">
-        {pages.length > 1 && pages.map((p) => (
+      <div className="space-x-2 flex justify-center items-center">
+        {pages.length > 1 && pages.map((item) => (
           <Link
-            key={p}
+            key={item}
             className={clsx(
-              'font-bold hover:animate-pulse w-8 h-8 rounded flex justify-center items-center',
+              'flex justify-center items-center font-bold w-8 h-8 rounded ',
               {
-                'bg-primary text-white pointer-events-none': p === page,
-                'text-white bg-card cursor-pointer': p !== page,
+                'text-white bg-card cursor-pointer': item !== page,
+                'text-white pointer-events-none bg-primary': item === page,
               }
             )}
-            href={p === 1 ? '?' : `?page=${p}`}
-            onClick={() => handleChange(p)}
+            href={item === 1 ? '?' : `?page=${item}`}
+            onClick={() => handleChangePage(item)}
           >
-            {p}
+            {item}
           </Link>
         ))}
       </div>
       {page < totalPages && (
         <Link
-          className="cursor-pointer font-bold hover:animate-pulse text-white"
+          className="text-white font-bold cursor-pointer"
           href={`?page=${page + 1}`}
-          onClick={() => handleChange(page + 1)}
+          onClick={() => handleChangePage(page + 1)}
         >
           {t('components.pagination.next')}
         </Link>

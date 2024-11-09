@@ -102,7 +102,7 @@ export default function Register(): ReactNode {
             )}
           />
           <Button text={t('auth.form.button.signup')} variant="primary" className="w-full" type="submit"/>
-          <Button text={t('auth.form.button.login')} variant="primary" type="button" className="w-full" onClick={() => router.push('/login')}/>
+          <Button text={t('auth.form.button.login')} variant="outline" type="button" className="w-full" onClick={() => router.push('/login')}/>
       </form>
     </div>
   </div>
