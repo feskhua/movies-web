@@ -27,8 +27,8 @@ Project is built using Next.js framework and Typescript and uses 'Pages' router.
 
 ### Environment variables
 ``` dotenv
-    NEXT_PUBLIC_URL=http://localhost:3000
-    NEXT_PUBLIC_API_HOST=localhost
-    NEXT_PUBLIC_API_PROTOCOL=http
-    NEXT_PUBLIC_API_PORT=3001
+NEXT_PUBLIC_URL=http://localhost:3000
+NEXT_PUBLIC_API_HOST=localhost
+NEXT_PUBLIC_API_PROTOCOL=http
+NEXT_PUBLIC_API_PORT=3001
 ```
